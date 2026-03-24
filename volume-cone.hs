@@ -4,12 +4,13 @@
 
 main :: IO ()
 main = do
-    let altura    = 10     -- altura do cone 
-        areabase  = 5      -- área da base
-        subddiv   = 10000  -- número de subdivisões (quanto maior o número, mais próximo chegará da área real da integral)
-        volume    = integral (\h -> circleArea h altura areabase) 0 altura subd
+    let altura   = 10         -- altura do cone 
+        areabase = 5          -- área da base
+        subd     = 10000      -- número de subdivisões. Quanto maior o número, mais próximo o resultado chegará do resultado real da integral
+        raioBase = sqrt (areabase / pi)  -- converte área em raio
+        volume   = integral (\h -> circleArea h altura raioBase) 0 altura subd
 
-    putStrLn("Volume do cone: " ++ show volume)
+    putStrLn ("Volume do cone: " ++ show volume)
 
 
 -- Função recursiva que calcula a área do cone: Aqui é a integral em essência
